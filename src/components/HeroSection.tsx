@@ -23,7 +23,7 @@ const HeroSection = () => {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-mono text-muted-foreground mb-8 border border-border/30"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/80 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" />
             Open to opportunities
           </motion.div>
 
