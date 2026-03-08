@@ -51,7 +51,7 @@ const ExperienceSection = () => {
                 <div className="flex gap-8 relative">
                   {/* Dot */}
                   <div className="relative z-10 flex-shrink-0 w-16 flex items-start justify-center pt-1">
-                    <div className="w-3 h-3 rounded-full bg-primary animate-pulse-glow" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-primary/70" />
                   </div>
 
                   <div className="cosmic-card p-6 flex-1 hover:border-primary/30 transition-colors duration-300">

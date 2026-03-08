@@ -29,17 +29,12 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-strong shadow-lg shadow-background/50" : ""
+        scrolled ? "glass-strong" : ""
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        {/* Brand Mark */}
-        <Link to="/" className="brand-mark group">
-          <div className="brand-icon transition-transform duration-300 group-hover:scale-110" />
-          <span className="font-heading text-lg font-bold tracking-tight">
-            <span className="text-foreground">ORBIT</span>
-            <span className="text-primary">.</span>
-          </span>
+        <Link to="/" className="font-heading text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-300">
+          YN<span className="text-primary">.</span>
         </Link>
 
         {/* Desktop */}
@@ -49,10 +44,9 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="relative text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium group"
+                className="relative text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -77,14 +71,14 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden glass-strong border-t border-border/50 px-6 pb-6"
+          className="md:hidden glass-strong border-t border-border/30 px-6 pb-6"
         >
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block py-3 text-muted-foreground hover:text-primary transition-colors font-medium"
+              className="block py-3 text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               {link.label}
             </a>
