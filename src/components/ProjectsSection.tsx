@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import ScrollReveal from "./ScrollReveal";
+import ScrollReveal, { StaggerContainer, StaggerItem } from "./ScrollReveal";
 import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
@@ -36,7 +36,6 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="py-32 relative">
       <div className="section-divider absolute top-0 left-0 right-0" />
-      <div className="nebula-orb w-[400px] h-[400px] bottom-[10%] right-[-10%] bg-[hsl(var(--nebula-3)/0.04)]" />
 
       <div className="container mx-auto px-6 relative z-10">
         <ScrollReveal>
@@ -46,19 +45,19 @@ const ProjectsSection = () => {
           </h2>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <StaggerContainer className="grid md:grid-cols-2 gap-6" staggerDelay={0.12}>
           {projects.map((project, i) => (
-            <ScrollReveal key={project.title} delay={i * 0.1}>
+            <StaggerItem key={project.title}>
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
-                className="cosmic-card p-8 h-full flex flex-col hover:border-primary/30 transition-colors duration-300 group"
+                className="cosmic-card p-8 h-full flex flex-col transition-colors duration-300 group"
               >
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-2 h-2 rounded-full bg-primary/60" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
                   <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Project {String(i + 1).padStart(2, '0')}</span>
                 </div>
-                <h3 className="font-heading text-xl font-bold mb-3 group-hover:text-gradient transition-all duration-300">
+                <h3 className="font-heading text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h3>
                 <p className="text-muted-foreground mb-6 flex-1 leading-relaxed text-sm">
@@ -68,32 +67,26 @@ const ProjectsSection = () => {
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="text-[10px] px-2.5 py-1 rounded-md bg-secondary/80 text-secondary-foreground font-mono font-medium border border-border/30"
+                      className="text-[10px] px-2.5 py-1 rounded-md bg-secondary/60 text-secondary-foreground font-mono border border-border/20"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
                 <div className="flex gap-4">
-                  <a
-                    href={project.github}
-                    className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
+                  <a href={project.github} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                     <Github className="w-4 h-4" /> Code
                   </a>
                   {project.demo && (
-                    <a
-                      href={project.demo}
-                      className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
+                    <a href={project.demo} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
                       <ExternalLink className="w-4 h-4" /> Demo
                     </a>
                   )}
                 </div>
               </motion.div>
-            </ScrollReveal>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
