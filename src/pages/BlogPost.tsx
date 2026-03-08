@@ -32,14 +32,15 @@ const BlogPost = () => {
             <Calendar className="w-4 h-4" /> {post.date}
           </div>
 
-          <div className="prose prose-invert prose-lg max-w-none
-            prose-headings:font-heading prose-headings:text-foreground
+          <div className="prose prose-lg prose-portfolio max-w-none
+            prose-headings:font-heading
             prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-            prose-p:text-muted-foreground prose-p:leading-relaxed
-            prose-strong:text-foreground prose-strong:font-semibold
-            prose-li:text-muted-foreground
+            prose-p:leading-relaxed
+            prose-li:leading-relaxed
             prose-ul:space-y-1
-            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+            prose-a:no-underline hover:prose-a:underline
+            prose-pre:rounded-xl prose-pre:border prose-pre:border-border
+            prose-blockquote:border-l-2 prose-blockquote:italic
           ">
             {post.content.split("\n\n").map((block, i) => {
               const trimmed = block.trim();
