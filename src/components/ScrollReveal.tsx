@@ -55,7 +55,7 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
 const Word = ({ children, progress, range }: { children: ReactNode; progress: any; range: [number, number] }) => {
   const opacity = useTransform(progress, range, [0.15, 1]);
   return (
-    <motion.span style={{ opacity }} className="inline-block transition-colors duration-200">
+    <motion.span style={{ opacity }} className="inline transition-colors duration-200">
       {children}
     </motion.span>
   );
