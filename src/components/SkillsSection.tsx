@@ -1,28 +1,37 @@
 import { motion } from "framer-motion";
-import ScrollReveal, { StaggerContainer, StaggerItem } from "./ScrollReveal";
+import ScrollReveal, { StaggerContainer, StaggerItem, ScaleReveal } from "./ScrollReveal";
 
-const skillCategories = [
-  {
-    title: "AI & Machine Learning",
-    skills: ["TensorFlow", "PyTorch", "Computer Vision", "Deep Learning", "NLP", "Edge AI"],
-    color: "primary",
-  },
-  {
-    title: "Embedded & IoT",
-    skills: ["ARM Cortex", "FreeRTOS", "C/C++", "MQTT", "STM32", "ESP32"],
-    color: "accent",
-  },
-  {
-    title: "Software Development",
-    skills: ["Python", "TypeScript", "React", "Node.js", "FastAPI", "PostgreSQL"],
-    color: "primary",
-  },
-  {
-    title: "Tools & DevOps",
-    skills: ["Git", "Docker", "Linux", "CI/CD", "AWS", "Kubernetes"],
-    color: "accent",
-  },
+const skills = [
+  { name: "Python", level: 90 },
+  { name: "C / C++", level: 85 },
+  { name: "JavaScript / TypeScript", level: 80 },
+  { name: "AI / Machine Learning", level: 88 },
+  { name: "Computer Vision", level: 82 },
+  { name: "Embedded Systems", level: 85 },
+  { name: "IoT", level: 78 },
+  { name: "React & Web Dev", level: 75 },
 ];
+
+const SkillBar = ({ name, level, delay }: { name: string; level: number; delay: number }) => (
+  <div className="space-y-2.5">
+    <div className="flex justify-between text-sm">
+      <span className="font-heading font-semibold text-foreground">{name}</span>
+      <span className="font-mono text-xs text-muted-foreground">{level}%</span>
+    </div>
+    <div className="h-1 rounded-full bg-secondary/60 overflow-hidden">
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: `${level}%` }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
+        className="h-full rounded-full"
+        style={{
+          background: `linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))`,
+        }}
+      />
+    </div>
+  </div>
+);
 
 const SkillsSection = () => {
   return (
@@ -37,36 +46,15 @@ const SkillsSection = () => {
           </h2>
         </ScrollReveal>
 
-        <StaggerContainer className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" staggerDelay={0.1}>
-          {skillCategories.map((category) => (
-            <StaggerItem key={category.title}>
-              <motion.div
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.3 }}
-                className="cosmic-card p-6 h-full"
-              >
-                <h3 className="font-heading font-bold text-foreground mb-4 flex items-center gap-2">
-                  <span className={`w-2 h-2 rounded-full bg-${category.color}`} />
-                  {category.title}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, i) => (
-                    <motion.span
-                      key={skill}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.05, duration: 0.3 }}
-                      className="px-3 py-1.5 text-xs font-mono rounded-lg bg-secondary/80 text-secondary-foreground border border-border/30 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 cursor-default"
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+        <ScaleReveal className="max-w-3xl mx-auto">
+          <StaggerContainer className="space-y-6" staggerDelay={0.06}>
+            {skills.map((skill, i) => (
+              <StaggerItem key={skill.name}>
+                <SkillBar name={skill.name} level={skill.level} delay={i * 0.08} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </ScaleReveal>
       </div>
     </section>
   );

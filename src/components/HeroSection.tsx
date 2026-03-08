@@ -27,61 +27,82 @@ const HeroSection = () => {
             Open to opportunities
           </motion.div>
 
-          {/* Name — clean reveal */}
+          {/* Name — letter by letter stagger */}
           <div className="relative inline-block">
-            <motion.div 
-              className="absolute -inset-x-20 -inset-y-10 bg-primary/15 blur-[100px] rounded-full"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 1.5 }}
-            />
-            <h1 className="relative z-10 font-heading text-6xl sm:text-8xl lg:text-[7rem] font-black leading-[0.95] mb-8 tracking-tight">
-              <motion.span
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="block text-foreground"
-              >
-                Omar
-                <span className="text-primary">.</span>
-              </motion.span>
+            <div className="absolute -inset-x-10 -inset-y-10 bg-primary/20 blur-[80px] rounded-full opacity-0 animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '4s' }} />
+            <h1 className="relative z-10 font-heading text-6xl sm:text-8xl lg:text-[7.5rem] font-black leading-[0.9] mb-6 tracking-tighter">
+              <span className="block overflow-hidden pb-4">
+                {"Omar".split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 100, rotate: 10 }}
+                    animate={{ opacity: 1, y: 0, rotate: 0 }}
+                    transition={{
+                      delay: 0.4 + i * 0.08,
+                      duration: 0.8,
+                      type: "spring",
+                      bounce: 0.4
+                    }}
+                    className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-foreground via-foreground to-foreground/50 drop-shadow-sm"
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+                <motion.span
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1, type: "spring", bounce: 0.6 }}
+                  className="inline-block text-primary ml-2"
+                >.</motion.span>
+              </span>
             </h1>
           </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto mb-12 font-light leading-relaxed"
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 1.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-lg sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-14 font-light leading-relaxed tracking-wide"
           >
-            Engineering intelligence at the edge of{" "}
-            <span className="text-foreground font-medium">AI</span>,{" "}
-            <span className="text-foreground font-medium">Embedded Systems</span> &{" "}
-            <span className="text-foreground font-medium">Software</span>
-          </motion.p>
+            Engineering intelligence at the edge of
+            <br className="hidden sm:block" />
+            <span className="text-foreground font-semibold relative inline-block mx-1 group">
+              <span className="relative z-10">AI</span>
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-primary/40 -z-10 group-hover:h-full transition-all duration-300" />
+            </span>,
+            <span className="text-foreground font-semibold relative inline-block mx-1 group">
+              <span className="relative z-10">Embedded Systems</span>
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-secondary/60 -z-10 group-hover:h-full transition-all duration-300" />
+            </span> &
+            <span className="text-foreground font-semibold relative inline-block mx-1 group">
+              <span className="relative z-10">Software</span>
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-accent/40 -z-10 group-hover:h-full transition-all duration-300" />
+            </span>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            transition={{ delay: 1.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <a
               href="#projects"
-              className="group relative inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]"
+              className="group relative inline-flex items-center justify-center px-10 py-4 rounded-full bg-primary text-primary-foreground font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_hsl(var(--primary)/0.4)]"
             >
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
               <span className="relative z-10 flex items-center gap-2">
                 Explore Work
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </span>
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full glass border border-border/50 text-foreground font-semibold transition-all duration-300 hover:border-primary/30 hover:bg-primary/5"
+              className="group relative inline-flex items-center justify-center px-10 py-4 rounded-full glass border-2 border-primary/20 text-foreground font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-primary/5 hover:border-primary/50"
             >
-              Let's Talk
+              <span className="relative z-10">Let's Talk</span>
             </a>
           </motion.div>
         </motion.div>
@@ -90,15 +111,15 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          transition={{ delay: 1.8, duration: 0.8 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-5 h-8 rounded-full border border-muted-foreground/20 flex justify-center pt-2"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-5 h-8 rounded-full border border-muted-foreground/15 flex justify-center pt-1.5"
           >
-            <div className="w-0.5 h-2 rounded-full bg-muted-foreground/40" />
+            <div className="w-0.5 h-1.5 rounded-full bg-muted-foreground/30" />
           </motion.div>
         </motion.div>
       </div>
