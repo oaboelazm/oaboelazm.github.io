@@ -5,11 +5,11 @@ const Footer = () => (
     <div className="container mx-auto px-6">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <Link to="/" className="font-heading text-sm font-bold tracking-tight text-foreground/60 hover:text-foreground transition-colors">
-          YN<span className="text-primary">.</span>
+          Omar<span className="text-primary">.</span>
         </Link>
 
         <p className="text-muted-foreground/50 text-xs">
-          © {new Date().getFullYear()} Your Name. All rights reserved.
+          © {new Date().getFullYear()} Omar. All rights reserved.
         </p>
       </div>
     </div>
