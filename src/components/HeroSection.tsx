@@ -56,6 +56,13 @@ const HeroSection = () => {
             >
               Contact Me
             </a>
+            <a
+              href="/resume.pdf"
+              download
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg border border-border text-muted-foreground font-semibold hover:text-foreground hover:border-primary/30 transition-all duration-300"
+            >
+              Download CV
+            </a>
           </motion.div>
         </motion.div>
 
