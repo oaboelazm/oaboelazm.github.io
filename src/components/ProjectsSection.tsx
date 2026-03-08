@@ -35,10 +35,13 @@ const projects = [
 const ProjectsSection = () => {
   return (
     <section id="projects" className="py-32 relative">
-      <div className="container mx-auto px-6">
+      <div className="section-divider absolute top-0 left-0 right-0" />
+      <div className="nebula-orb w-[400px] h-[400px] bottom-[10%] right-[-10%] bg-[hsl(var(--nebula-3)/0.04)]" />
+
+      <div className="container mx-auto px-6 relative z-10">
         <ScrollReveal>
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-3">Projects</p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold mb-16">
+          <p className="text-primary font-mono font-medium tracking-widest uppercase text-xs mb-3">// Projects</p>
+          <h2 className="font-heading text-4xl sm:text-5xl font-extrabold mb-16">
             Featured <span className="text-gradient">Work</span>
           </h2>
         </ScrollReveal>
@@ -49,19 +52,23 @@ const ProjectsSection = () => {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
-                className="glass rounded-2xl p-8 h-full flex flex-col hover:border-primary/30 transition-colors duration-300 group"
+                className="cosmic-card p-8 h-full flex flex-col hover:border-primary/30 transition-colors duration-300 group"
               >
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2 h-2 rounded-full bg-primary/60" />
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Project {String(i + 1).padStart(2, '0')}</span>
+                </div>
                 <h3 className="font-heading text-xl font-bold mb-3 group-hover:text-gradient transition-all duration-300">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground mb-6 flex-1 leading-relaxed">
+                <p className="text-muted-foreground mb-6 flex-1 leading-relaxed text-sm">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="text-xs px-3 py-1 rounded-full bg-secondary text-secondary-foreground font-medium"
+                      className="text-[10px] px-2.5 py-1 rounded-md bg-secondary/80 text-secondary-foreground font-mono font-medium border border-border/30"
                     >
                       {t}
                     </span>

@@ -7,18 +7,18 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log("Form submitted:", formData);
   };
 
   return (
     <section id="contact" className="py-32 relative">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/5 rounded-full blur-[150px]" />
+      <div className="section-divider absolute top-0 left-0 right-0" />
+      <div className="nebula-orb w-[500px] h-[400px] bottom-[10%] left-[30%] bg-[hsl(var(--nebula-2)/0.04)]" />
 
       <div className="container mx-auto px-6 relative z-10">
         <ScrollReveal>
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mb-3 text-center">Contact</p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold mb-16 text-center">
+          <p className="text-primary font-mono font-medium tracking-widest uppercase text-xs mb-3 text-center">// Contact</p>
+          <h2 className="font-heading text-4xl sm:text-5xl font-extrabold mb-16 text-center">
             Get In <span className="text-gradient">Touch</span>
           </h2>
         </ScrollReveal>
@@ -36,7 +36,7 @@ const ContactSection = () => {
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
+                  className="w-12 h-12 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
                 >
                   <Github className="w-5 h-5" />
                 </a>
@@ -44,13 +44,13 @@ const ContactSection = () => {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
+                  className="w-12 h-12 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a
                   href="mailto:hello@example.com"
-                  className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
+                  className="w-12 h-12 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
                 >
                   <Mail className="w-5 h-5" />
                 </a>
@@ -66,7 +66,7 @@ const ContactSection = () => {
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-5 py-3.5 rounded-xl bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all duration-300"
+                  className="w-full px-5 py-3.5 rounded-xl bg-secondary/60 border border-border/50 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/15 transition-all duration-300 font-body"
                   required
                 />
               </div>
@@ -76,7 +76,7 @@ const ContactSection = () => {
                   placeholder="Your Email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-5 py-3.5 rounded-xl bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all duration-300"
+                  className="w-full px-5 py-3.5 rounded-xl bg-secondary/60 border border-border/50 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/15 transition-all duration-300 font-body"
                   required
                 />
               </div>
@@ -86,7 +86,7 @@ const ContactSection = () => {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-5 py-3.5 rounded-xl bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all duration-300 resize-none"
+                  className="w-full px-5 py-3.5 rounded-xl bg-secondary/60 border border-border/50 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/15 transition-all duration-300 resize-none font-body"
                   required
                 />
               </div>
