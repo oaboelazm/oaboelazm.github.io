@@ -38,6 +38,7 @@ interface ElectricPulse {
 interface Wave {
   x: number;
   y: number;
+  baseY: number; // absolute position
   radius: number;
   maxRadius: number;
   opacity: number;
@@ -48,6 +49,7 @@ interface RandomEffect {
   type: 'burst' | 'ripple' | 'flash';
   x: number;
   y: number;
+  baseY: number; // absolute position
   life: number;
   maxLife: number;
   size: number;
