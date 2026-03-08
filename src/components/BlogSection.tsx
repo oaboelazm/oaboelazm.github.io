@@ -1,29 +1,7 @@
 import ScrollReveal from "./ScrollReveal";
 import { ArrowRight, Calendar } from "lucide-react";
-
-const posts = [
-  {
-    title: "Building Intelligent IoT Systems with Edge AI",
-    excerpt: "Exploring how to deploy machine learning models on resource-constrained embedded devices for real-time inference.",
-    date: "Mar 2026",
-    tag: "AI / Embedded",
-    link: "#",
-  },
-  {
-    title: "From Prototype to Production: Lessons Learned",
-    excerpt: "Key takeaways from shipping hardware-software products — from PCB design to cloud deployment.",
-    date: "Feb 2026",
-    tag: "Engineering",
-    link: "#",
-  },
-  {
-    title: "Computer Vision on a Budget: OpenCV + Raspberry Pi",
-    excerpt: "A practical guide to building real-time object detection pipelines using affordable hardware.",
-    date: "Jan 2026",
-    tag: "Computer Vision",
-    link: "#",
-  },
-];
+import { Link } from "react-router-dom";
+import { blogPosts } from "@/data/blogPosts";
 
 const BlogSection = () => (
   <section id="blog" className="py-32 relative">
@@ -38,10 +16,10 @@ const BlogSection = () => (
       </ScrollReveal>
 
       <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        {posts.map((post, i) => (
-          <ScrollReveal key={post.title} delay={i * 0.1}>
-            <a
-              href={post.link}
+        {blogPosts.map((post, i) => (
+          <ScrollReveal key={post.slug} delay={i * 0.1}>
+            <Link
+              to={`/blog/${post.slug}`}
               className="group block h-full rounded-2xl glass p-6 hover:border-primary/30 transition-all duration-300"
             >
               <span className="inline-block text-xs font-semibold tracking-wider uppercase text-primary bg-primary/10 px-3 py-1 rounded-full mb-4">
@@ -60,10 +38,21 @@ const BlogSection = () => (
                   Read <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
-            </a>
+            </Link>
           </ScrollReveal>
         ))}
       </div>
+
+      <ScrollReveal delay={0.3}>
+        <div className="text-center mt-12">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
+          >
+            View all articles <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </ScrollReveal>
     </div>
   </section>
 );
