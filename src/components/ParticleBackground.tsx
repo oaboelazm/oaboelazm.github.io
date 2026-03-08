@@ -156,25 +156,29 @@ const ParticleBackground = () => {
     };
 
     const spawnWave = () => {
+      const yPos = scrollY + Math.random() * window.innerHeight;
       waves.push({
         x: Math.random() * canvas.width,
-        y: scrollY + Math.random() * window.innerHeight,
+        y: yPos,
+        baseY: yPos,
         radius: 0,
-        maxRadius: Math.random() * 250 + 150, // larger waves
-        opacity: 0.25, // more visible
-        speed: Math.random() * 0.5 + 0.2, // slower expansion
+        maxRadius: Math.random() * 250 + 150,
+        opacity: 0.25,
+        speed: Math.random() * 0.5 + 0.2,
       });
     };
 
     const spawnRandomEffect = () => {
       const types: ('burst' | 'ripple' | 'flash')[] = ['burst', 'ripple', 'flash'];
+      const yPos = scrollY + Math.random() * window.innerHeight;
       randomEffects.push({
         type: types[Math.floor(Math.random() * types.length)],
         x: Math.random() * canvas.width,
-        y: scrollY + Math.random() * window.innerHeight,
+        y: yPos,
+        baseY: yPos,
         life: 0,
-        maxLife: Math.random() * 120 + 80, // live much longer (approx 1.5-3 seconds)
-        size: Math.random() * 50 + 30, // bigger effects
+        maxLife: Math.random() * 120 + 80,
+        size: Math.random() * 50 + 30,
       });
     };
 
