@@ -29,7 +29,7 @@ const SkillBar = ({ name, level, delay }: { name: string; level: number; delay: 
           background: `linear-gradient(90deg, hsl(var(--primary)), hsl(var(--nebula-1)))`,
         }}
       >
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-foreground/90 shadow-[0_0_8px_2px_hsl(var(--primary)/0.5)]" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-primary/70" />
       </motion.div>
     </div>
   </div>
