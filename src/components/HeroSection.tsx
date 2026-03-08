@@ -90,15 +90,15 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 0.8 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-5 h-8 rounded-full border border-muted-foreground/15 flex justify-center pt-1.5"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-5 h-8 rounded-full border border-muted-foreground/20 flex justify-center pt-2"
           >
-            <div className="w-0.5 h-1.5 rounded-full bg-muted-foreground/30" />
+            <div className="w-0.5 h-2 rounded-full bg-muted-foreground/40" />
           </motion.div>
         </motion.div>
       </div>
