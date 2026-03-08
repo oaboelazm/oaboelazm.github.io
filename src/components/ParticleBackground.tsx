@@ -277,7 +277,7 @@ const ParticleBackground = () => {
       }
 
       // Electric pulses along circuit
-      if (Math.random() < 0.02) spawnElectricPulse();
+      if (Math.random() < 0.04) spawnElectricPulse(); // more frequent
 
       for (let i = electricPulses.length - 1; i >= 0; i--) {
         const pulse = electricPulses[i];
@@ -292,14 +292,14 @@ const ParticleBackground = () => {
         const y = fromY + (toY - fromY) * pulse.progress;
 
         if (y >= viewTop && y <= viewBottom) {
-          const alpha = Math.sin(pulse.progress * Math.PI) * 0.6;
+          const alpha = Math.sin(pulse.progress * Math.PI) * 0.8; // more visible
           const color = pulse.color === 'primary' ? '215, 60%, 58%' : '255, 35%, 55%';
           
           ctx.beginPath();
-          ctx.arc(x, y, 3, 0, Math.PI * 2);
+          ctx.arc(x, y, 4, 0, Math.PI * 2); // bigger pulses
           ctx.fillStyle = `hsla(${color}, ${alpha})`;
-          ctx.shadowBlur = 12;
-          ctx.shadowColor = `hsla(${color}, ${alpha * 0.8})`;
+          ctx.shadowBlur = 16;
+          ctx.shadowColor = `hsla(${color}, ${alpha * 0.9})`;
           ctx.fill();
           ctx.shadowBlur = 0;
         }
@@ -307,61 +307,69 @@ const ParticleBackground = () => {
         if (pulse.progress >= 1) electricPulses.splice(i, 1);
       }
 
-      // Waves
-      if (Math.random() < 0.005) spawnWave();
+      // Waves - more frequent
+      if (Math.random() < 0.015) spawnWave();
 
       for (let i = waves.length - 1; i >= 0; i--) {
         const wave = waves[i];
         wave.radius += wave.speed;
-        wave.opacity = 0.1 * (1 - wave.radius / wave.maxRadius);
+        wave.opacity = 0.2 * (1 - wave.radius / wave.maxRadius); // more visible
 
-        if (wave.y >= viewTop && wave.y <= viewBottom && wave.opacity > 0.01) {
+        // Use baseY for fixed position
+        if (wave.baseY >= viewTop && wave.baseY <= viewBottom && wave.opacity > 0.01) {
           ctx.beginPath();
-          ctx.arc(wave.x, wave.y, wave.radius, 0, Math.PI * 2);
+          ctx.arc(wave.x, wave.baseY, wave.radius, 0, Math.PI * 2);
           ctx.strokeStyle = `hsla(215, 40%, 60%, ${wave.opacity})`;
-          ctx.lineWidth = 1;
+          ctx.lineWidth = 1.5;
           ctx.stroke();
         }
 
         if (wave.radius >= wave.maxRadius) waves.splice(i, 1);
       }
 
-      // Random effects
-      if (Math.random() < 0.003) spawnRandomEffect();
+      // Random effects - more frequent
+      if (Math.random() < 0.01) spawnRandomEffect();
 
       for (let i = randomEffects.length - 1; i >= 0; i--) {
         const effect = randomEffects[i];
         effect.life += 1;
         const progress = effect.life / effect.maxLife;
-        const alpha = Math.sin(progress * Math.PI) * 0.15;
+        const alpha = Math.sin(progress * Math.PI) * 0.25; // more visible
 
-        if (effect.y >= viewTop && effect.y <= viewBottom) {
+        // Use baseY for fixed position
+        if (effect.baseY >= viewTop && effect.baseY <= viewBottom) {
           if (effect.type === 'burst') {
-            for (let j = 0; j < 6; j++) {
-              const angle = (j / 6) * Math.PI * 2;
+            for (let j = 0; j < 8; j++) { // more particles
+              const angle = (j / 8) * Math.PI * 2;
               const dist = progress * effect.size;
               ctx.beginPath();
               ctx.arc(
                 effect.x + Math.cos(angle) * dist,
-                effect.y + Math.sin(angle) * dist,
-                2,
+                effect.baseY + Math.sin(angle) * dist,
+                3, // bigger particles
                 0,
                 Math.PI * 2
               );
               ctx.fillStyle = `hsla(255, 35%, 60%, ${alpha})`;
+              ctx.shadowBlur = 8;
+              ctx.shadowColor = `hsla(255, 35%, 60%, ${alpha * 0.6})`;
               ctx.fill();
+              ctx.shadowBlur = 0;
             }
           } else if (effect.type === 'ripple') {
             ctx.beginPath();
-            ctx.arc(effect.x, effect.y, progress * effect.size, 0, Math.PI * 2);
+            ctx.arc(effect.x, effect.baseY, progress * effect.size, 0, Math.PI * 2);
             ctx.strokeStyle = `hsla(215, 50%, 65%, ${alpha})`;
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 2.5;
             ctx.stroke();
           } else if (effect.type === 'flash') {
             ctx.beginPath();
-            ctx.arc(effect.x, effect.y, effect.size * (1 - progress * 0.5), 0, Math.PI * 2);
-            ctx.fillStyle = `hsla(220, 30%, 80%, ${alpha * 0.5})`;
+            ctx.arc(effect.x, effect.baseY, effect.size * (1 - progress * 0.5), 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(220, 30%, 80%, ${alpha * 0.7})`;
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = `hsla(220, 30%, 80%, ${alpha * 0.5})`;
             ctx.fill();
+            ctx.shadowBlur = 0;
           }
         }
 
