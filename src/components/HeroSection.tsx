@@ -17,15 +17,17 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
         >
           {/* Status badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-mono text-muted-foreground mb-8 border border-border/30"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" />
-            Open to opportunities
-          </motion.div>
+          <div className="flex justify-center w-full mb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-mono text-muted-foreground border border-border/30"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" />
+              Open to opportunities
+            </motion.div>
+          </div>
 
           {/* Name — letter by letter stagger */}
           <div className="relative inline-block">
