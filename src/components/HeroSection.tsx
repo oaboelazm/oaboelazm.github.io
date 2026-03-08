@@ -27,34 +27,24 @@ const HeroSection = () => {
             Open to opportunities
           </motion.div>
 
-          {/* Name — letter by letter stagger */}
+          {/* Name — clean reveal */}
           <div className="relative inline-block">
-            <div className="absolute -inset-x-10 -inset-y-10 bg-primary/20 blur-[80px] rounded-full opacity-0 animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '4s' }} />
-            <h1 className="relative z-10 font-heading text-6xl sm:text-8xl lg:text-[7.5rem] font-black leading-[0.9] mb-6 tracking-tighter">
-              <span className="block overflow-hidden pb-4">
-                {"Omar".split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, y: 100, rotate: 10 }}
-                    animate={{ opacity: 1, y: 0, rotate: 0 }}
-                    transition={{
-                      delay: 0.4 + i * 0.08,
-                      duration: 0.8,
-                      type: "spring",
-                      bounce: 0.4
-                    }}
-                    className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-foreground via-foreground to-foreground/50 drop-shadow-sm"
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </motion.span>
-                ))}
-                <motion.span
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1, type: "spring", bounce: 0.6 }}
-                  className="inline-block text-primary ml-2"
-                >.</motion.span>
-              </span>
+            <motion.div 
+              className="absolute -inset-x-20 -inset-y-10 bg-primary/15 blur-[100px] rounded-full"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8, duration: 1.5 }}
+            />
+            <h1 className="relative z-10 font-heading text-6xl sm:text-8xl lg:text-[7rem] font-black leading-[0.95] mb-8 tracking-tight">
+              <motion.span
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="block text-foreground"
+              >
+                Omar
+                <span className="text-primary">.</span>
+              </motion.span>
             </h1>
           </div>
 
