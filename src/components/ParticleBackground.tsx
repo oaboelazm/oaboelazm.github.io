@@ -147,7 +147,7 @@ const ParticleBackground = () => {
           fromNode: nodeIndex,
           toNode: targetIndex,
           progress: 0,
-          speed: Math.random() * 0.03 + 0.015,
+          speed: Math.random() * 0.02 + 0.01, // slower pulses
           color: Math.random() > 0.5 ? 'primary' : 'accent',
         });
       }
@@ -158,9 +158,9 @@ const ParticleBackground = () => {
         x: Math.random() * canvas.width,
         y: scrollY + Math.random() * window.innerHeight,
         radius: 0,
-        maxRadius: Math.random() * 150 + 100,
-        opacity: 0.15,
-        speed: Math.random() * 0.8 + 0.4,
+        maxRadius: Math.random() * 250 + 150, // larger waves
+        opacity: 0.25, // more visible
+        speed: Math.random() * 0.5 + 0.2, // slower expansion
       });
     };
 
@@ -171,8 +171,8 @@ const ParticleBackground = () => {
         x: Math.random() * canvas.width,
         y: scrollY + Math.random() * window.innerHeight,
         life: 0,
-        maxLife: Math.random() * 60 + 40,
-        size: Math.random() * 30 + 20,
+        maxLife: Math.random() * 120 + 80, // live much longer (approx 1.5-3 seconds)
+        size: Math.random() * 50 + 30, // bigger effects
       });
     };
 
