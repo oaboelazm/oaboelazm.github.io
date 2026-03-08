@@ -48,51 +48,40 @@ const HeroSection = () => {
             </h1>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ delay: 1.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-lg sm:text-2xl text-muted-foreground max-w-2xl mx-auto mb-14 font-light leading-relaxed tracking-wide"
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto mb-12 font-light leading-relaxed"
           >
-            Engineering intelligence at the edge of
-            <br className="hidden sm:block" />
-            <span className="text-foreground font-semibold relative inline-block mx-1 group">
-              <span className="relative z-10">AI</span>
-              <span className="absolute bottom-0 left-0 w-full h-1 bg-primary/40 -z-10 group-hover:h-full transition-all duration-300" />
-            </span>,
-            <span className="text-foreground font-semibold relative inline-block mx-1 group">
-              <span className="relative z-10">Embedded Systems</span>
-              <span className="absolute bottom-0 left-0 w-full h-1 bg-secondary/60 -z-10 group-hover:h-full transition-all duration-300" />
-            </span> &
-            <span className="text-foreground font-semibold relative inline-block mx-1 group">
-              <span className="relative z-10">Software</span>
-              <span className="absolute bottom-0 left-0 w-full h-1 bg-accent/40 -z-10 group-hover:h-full transition-all duration-300" />
-            </span>
-          </motion.div>
+            Engineering intelligence at the edge of{" "}
+            <span className="text-foreground font-medium">AI</span>,{" "}
+            <span className="text-foreground font-medium">Embedded Systems</span> &{" "}
+            <span className="text-foreground font-medium">Software</span>
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <a
               href="#projects"
-              className="group relative inline-flex items-center justify-center px-10 py-4 rounded-full bg-primary text-primary-foreground font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_hsl(var(--primary)/0.4)]"
+              className="group relative inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]"
             >
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
               <span className="relative z-10 flex items-center gap-2">
                 Explore Work
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </span>
             </a>
             <a
               href="#contact"
-              className="group relative inline-flex items-center justify-center px-10 py-4 rounded-full glass border-2 border-primary/20 text-foreground font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-primary/5 hover:border-primary/50"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full glass border border-border/50 text-foreground font-semibold transition-all duration-300 hover:border-primary/30 hover:bg-primary/5"
             >
-              <span className="relative z-10">Let's Talk</span>
+              Let's Talk
             </a>
           </motion.div>
         </motion.div>
