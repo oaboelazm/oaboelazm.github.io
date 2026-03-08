@@ -34,7 +34,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         <Link to="/" className="font-heading text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-300">
-          YN<span className="text-primary">.</span>
+          Omar<span className="text-primary">.</span>
         </Link>
 
         {/* Desktop */}
