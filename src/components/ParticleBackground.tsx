@@ -1,5 +1,24 @@
 import { useEffect, useRef } from "react";
 
+interface Star {
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  twinkleSpeed: number;
+  twinkleOffset: number;
+}
+
+interface ShootingStar {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  life: number;
+  maxLife: number;
+  size: number;
+}
+
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -10,7 +29,9 @@ const ParticleBackground = () => {
     if (!ctx) return;
 
     let animationId: number;
-    const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
+    const stars: Star[] = [];
+    const shootingStars: ShootingStar[] = [];
+    let time = 0;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -19,46 +40,102 @@ const ParticleBackground = () => {
     resize();
     window.addEventListener("resize", resize);
 
-    for (let i = 0; i < 60; i++) {
-      particles.push({
+    // Create stars — dense starfield
+    const starCount = Math.min(Math.floor((canvas.width * canvas.height) / 3000), 400);
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.4 + 0.1,
+        size: Math.random() < 0.85 ? Math.random() * 1.2 + 0.3 : Math.random() * 2.5 + 1,
+        opacity: Math.random() * 0.6 + 0.2,
+        twinkleSpeed: Math.random() * 0.02 + 0.005,
+        twinkleOffset: Math.random() * Math.PI * 2,
       });
     }
 
+    const spawnShootingStar = () => {
+      const angle = Math.random() * 0.5 + 0.3; // mostly diagonal
+      const speed = Math.random() * 4 + 3;
+      shootingStars.push({
+        x: Math.random() * canvas.width * 0.8,
+        y: Math.random() * canvas.height * 0.3,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 0,
+        maxLife: Math.random() * 40 + 30,
+        size: Math.random() * 1.5 + 0.8,
+      });
+    };
+
     const animate = () => {
+      time += 1;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      // Draw stars
+      stars.forEach((star) => {
+        const twinkle = Math.sin(time * star.twinkleSpeed + star.twinkleOffset);
+        const currentOpacity = star.opacity * (0.5 + 0.5 * twinkle);
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(56, 189, 248, ${p.opacity})`;
-        ctx.fill();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
 
-        // Draw connections
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = p.x - particles[j].x;
-          const dy = p.y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(56, 189, 248, ${0.06 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
+        // Bright stars get a colored tint
+        if (star.size > 1.5) {
+          const hue = Math.random() > 0.5 ? 210 : 280;
+          ctx.fillStyle = `hsla(${hue}, 60%, 80%, ${currentOpacity})`;
+          // Glow
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = `hsla(${hue}, 70%, 70%, ${currentOpacity * 0.5})`;
+        } else {
+          ctx.fillStyle = `rgba(220, 230, 255, ${currentOpacity})`;
+          ctx.shadowBlur = 0;
         }
+        ctx.fill();
+        ctx.shadowBlur = 0;
       });
+
+      // Shooting stars
+      if (Math.random() < 0.005) spawnShootingStar();
+
+      for (let i = shootingStars.length - 1; i >= 0; i--) {
+        const ss = shootingStars[i];
+        ss.x += ss.vx;
+        ss.y += ss.vy;
+        ss.life += 1;
+
+        const progress = ss.life / ss.maxLife;
+        const fadeIn = Math.min(progress * 5, 1);
+        const fadeOut = 1 - progress;
+        const alpha = fadeIn * fadeOut * 0.9;
+
+        // Trail
+        const tailLen = 40;
+        const gradient = ctx.createLinearGradient(
+          ss.x, ss.y,
+          ss.x - ss.vx * tailLen, ss.y - ss.vy * tailLen
+        );
+        gradient.addColorStop(0, `rgba(200, 220, 255, ${alpha})`);
+        gradient.addColorStop(0.3, `rgba(140, 180, 255, ${alpha * 0.5})`);
+        gradient.addColorStop(1, `rgba(140, 180, 255, 0)`);
+
+        ctx.beginPath();
+        ctx.moveTo(ss.x, ss.y);
+        ctx.lineTo(ss.x - ss.vx * tailLen, ss.y - ss.vy * tailLen);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = ss.size;
+        ctx.stroke();
+
+        // Head glow
+        ctx.beginPath();
+        ctx.arc(ss.x, ss.y, ss.size * 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(220, 235, 255, ${alpha})`;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = `rgba(150, 200, 255, ${alpha})`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        if (ss.life >= ss.maxLife) shootingStars.splice(i, 1);
+      }
 
       animationId = requestAnimationFrame(animate);
     };
