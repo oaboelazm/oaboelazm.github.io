@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useSpring, MotionValue, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
 import { ReactNode, useRef } from "react";
 
 interface ScrollRevealProps {
@@ -16,6 +16,12 @@ const directionMap = {
   right: { x: -60, y: 0 },
 };
 
+const revealViewport = {
+  once: false,
+  amount: 0.18,
+  margin: "0px 0px -10% 0px",
+};
+
 const ScrollReveal = ({ children, className = "", delay = 0, direction = "up", distance }: ScrollRevealProps) => {
   const offset = directionMap[direction];
   const dist = distance ?? Math.abs(offset.y || offset.x);
@@ -24,8 +30,8 @@ const ScrollReveal = ({ children, className = "", delay = 0, direction = "up", d
     <motion.div
       initial={{ opacity: 0, y: offset.y ? dist * Math.sign(offset.y) : 0, x: offset.x ? dist * Math.sign(offset.x) : 0, filter: "blur(6px)" }}
       whileInView={{ opacity: 1, y: 0, x: 0, filter: "blur(0px)" }}
-      viewport={{ once: false, margin: "-80px" }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={revealViewport}
+      transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -38,7 +44,7 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.95", "start 0.25"],
+    offset: ["start 0.98", "start 0.55"],
   });
 
   const words = text.split(" ");
@@ -55,7 +61,7 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
 };
 
 const Word = ({ children, progress, range }: { children: ReactNode; progress: MotionValue<number>; range: [number, number] }) => {
-  const opacity = useTransform(progress, range, [0.1, 1]);
+  const opacity = useTransform(progress, range, [0, 1]);
   const y = useTransform(progress, range, [6, 0]);
   const smoothOpacity = useSpring(opacity, { stiffness: 100, damping: 20 });
   const smoothY = useSpring(y, { stiffness: 100, damping: 20 });
@@ -73,7 +79,7 @@ export const StaggerContainer = ({ children, className = "", staggerDelay = 0.08
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, margin: "-60px" }}
+      viewport={revealViewport}
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: staggerDelay } },
@@ -105,8 +111,8 @@ export const ScaleReveal = ({ children, className = "" }: { children: ReactNode;
     <motion.div
       initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
       whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-      viewport={{ once: false, margin: "-60px" }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      viewport={revealViewport}
+      transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -138,8 +144,8 @@ export const HeroReveal = ({ children, className = "" }: { children: ReactNode; 
     <motion.div
       initial={{ opacity: 0, scale: 0.88, y: 50, filter: "blur(10px)" }}
       whileInView={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: false, margin: "-40px" }}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      viewport={revealViewport}
+      transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -148,3 +154,4 @@ export const HeroReveal = ({ children, className = "" }: { children: ReactNode; 
 };
 
 export default ScrollReveal;
+
