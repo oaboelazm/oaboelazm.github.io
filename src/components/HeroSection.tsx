@@ -95,24 +95,28 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.6 + i * 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="relative text-base sm:text-xl lg:text-3xl font-semibold cursor-default group"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))`,
-                  backgroundSize: "200% 100%",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  animation: `shimmer-text 3s ease-in-out infinite ${i * 0.5}s`,
-                }}
+                className="relative text-base sm:text-xl lg:text-3xl font-semibold cursor-default group inline-flex items-center"
               >
-                <span className="relative z-10">{item.text}</span>
+                <span
+                  className="relative z-10"
+                  style={{
+                    backgroundImage: `linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))`,
+                    backgroundSize: "200% 100%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    animation: `shimmer-text 3s ease-in-out infinite ${i * 0.5}s`,
+                  }}
+                >
+                  {item.text}
+                </span>
                 <motion.span
-                  className="absolute bottom-0 left-0 w-full h-[2px] sm:h-[3px] bg-gradient-to-r from-primary/40 via-accent/40 to-primary/40 -z-10 origin-left"
+                  className="absolute bottom-0 left-0 w-full h-[2px] sm:h-[3px] bg-gradient-to-r from-primary/40 via-accent/40 to-primary/40 origin-left"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 2 + i * 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 />
-                {i < 2 && <span className="text-muted-foreground font-light mx-1" style={{ WebkitTextFillColor: "initial" }}>·</span>}
+                {i < 2 && <span className="text-muted-foreground font-light mx-1">·</span>}
               </motion.span>
             ))}
           </div>
