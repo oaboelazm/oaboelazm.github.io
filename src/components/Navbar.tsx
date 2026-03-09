@@ -32,8 +32,8 @@ const Navbar = () => {
         scrolled ? "glass-strong shadow-[0_1px_30px_hsl(var(--background)/0.5)]" : ""
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between py-5 px-6">
-        <Link to="/" className="font-heading text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-500">
+      <div className="w-full flex items-center justify-between py-4 px-4 sm:px-6">
+        <Link to="/" className="font-heading text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-500 flex-shrink-0">
           Omar<span className="text-primary">.</span>
         </Link>
 
