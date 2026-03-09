@@ -2,22 +2,10 @@ import ScrollReveal, { StaggerContainer, StaggerItem, HeroReveal } from "./Scrol
 
 const timeline = [
   {
-    year: "2021 – 2026",
-    title: "B.Eng. Computer Engineering",
-    org: "El Shorouk Academy, Cairo",
-    description: "Senior year undergraduate studying computer engineering with focus on embedded systems, hardware/software co-design, and cybersecurity.",
-  },
-  {
-    year: "2023 – Present",
-    title: "System Administrator (Part-Time, Remote)",
-    org: "EC4SDF – Cairo, Egypt",
-    description: "Managing and maintaining organizational servers and websites, handling Linux hosting environments, WordPress infrastructure and basic security hardening.",
-  },
-  {
-    year: "2022 – Present",
-    title: "Freelance Software Developer (Remote)",
-    org: "Freelance",
-    description: "Utilizing Python and Java for software development, providing optimal solutions, and collaborating with remote teams.",
+    year: "In Progress – Expected July 2026",
+    title: "Vulnerability Analyst & Penetration Tester",
+    org: "DEPI",
+    description: "Comprehensive cybersecurity training covering vulnerability assessment and penetration testing methodologies.",
   },
   {
     year: "2025",
@@ -38,10 +26,28 @@ const timeline = [
     description: "Certified in Huawei's AI fundamentals including machine learning and deep learning concepts.",
   },
   {
-    year: "In Progress",
-    title: "Vulnerability Analyst & Penetration Tester",
-    org: "DEPI – Expected July 2026",
-    description: "Comprehensive cybersecurity training covering vulnerability assessment and penetration testing methodologies.",
+    year: "2024",
+    title: "IoT Application Development",
+    org: "ITI",
+    description: "Training in IoT application development and connected device ecosystems.",
+  },
+  {
+    year: "2023 – Present",
+    title: "System Administrator (Part-Time, Remote)",
+    org: "EC4SDF – Cairo, Egypt",
+    description: "Managing and maintaining organizational servers and websites, handling Linux hosting environments, WordPress infrastructure and basic security hardening.",
+  },
+  {
+    year: "2023",
+    title: "Mobile Application Development: Flutter, Dart",
+    org: "Udemy",
+    description: "Comprehensive course on building cross-platform mobile applications using Flutter and Dart.",
+  },
+  {
+    year: "2022 – Present",
+    title: "Freelance Software Developer (Remote)",
+    org: "Freelance",
+    description: "Utilizing Python and Java for software development, providing optimal solutions, and collaborating with remote teams.",
   },
 ];
 
