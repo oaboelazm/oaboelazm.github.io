@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
@@ -58,12 +58,13 @@ const Navbar = () => {
         {isHome && (
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            className="md:hidden relative z-20 flex flex-col gap-1.5 p-2.5 rounded-lg glass-strong border border-border/40 text-foreground"
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
-            <span className={`block w-5 h-0.5 bg-foreground transition-all duration-500 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-foreground transition-all duration-500 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-foreground transition-all duration-500 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-current transition-all duration-500 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-current transition-all duration-500 ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-current transition-all duration-500 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
         )}
       </div>
@@ -95,3 +96,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
