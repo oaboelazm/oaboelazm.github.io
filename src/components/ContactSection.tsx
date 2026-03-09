@@ -1,14 +1,23 @@
 import { useState } from "react";
 import ScrollReveal, { HeroReveal } from "./ScrollReveal";
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
-import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, FileText, CheckCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setSubmitted(true);
+    toast({
+      title: "Message sent! ✨",
+      description: "Thanks for reaching out. I'll get back to you soon.",
+    });
+    setFormData({ name: "", email: "", message: "" });
+    setTimeout(() => setSubmitted(false), 3000);
   };
 
   return (
@@ -94,9 +103,16 @@ const ContactSection = () => {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3.5 sm:py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm sm:text-base hover:shadow-[0_0_40px_hsl(var(--primary)/0.25)] transition-all duration-500">
-                
-                Send Message
+                disabled={submitted}
+                className="w-full py-3.5 sm:py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm sm:text-base hover:shadow-[0_0_40px_hsl(var(--primary)/0.25)] transition-all duration-500 disabled:opacity-60 flex items-center justify-center gap-2">
+                {submitted ? (
+                  <>
+                    <CheckCircle className="w-4 h-4" />
+                    Sent!
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </motion.button>
             </form>
           </ScrollReveal>

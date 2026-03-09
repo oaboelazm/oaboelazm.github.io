@@ -29,7 +29,7 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 overflow-x-hidden ${
-        scrolled ? "glass-strong shadow-[0_1px_30px_hsl(var(--background)/0.5)]" : ""
+        scrolled ? "glass-strong shadow-[0_1px_30px_hsl(var(--background)/0.5)] py-0" : "py-1"
       }`}
     >
       <div className="w-full flex items-center justify-between py-4 px-4 sm:px-6">

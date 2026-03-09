@@ -84,7 +84,7 @@ const HeroSection = () => {
           <p className="text-base sm:text-xl lg:text-3xl text-muted-foreground font-light leading-relaxed tracking-wide">
             Building secure & smart solutions with
           </p>
-          <div className="flex flex-wrap justify-center gap-x-2 sm:gap-x-3 gap-y-1 mt-2 sm:mt-3">
+          <div className="flex flex-wrap justify-center gap-x-3 sm:gap-x-4 gap-y-2 mt-2 sm:mt-3">
             {[
               { text: "Embedded Systems" },
               { text: "Cybersecurity" },
@@ -116,7 +116,7 @@ const HeroSection = () => {
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 2 + i * 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 />
-                {i < 2 && <span className="text-muted-foreground font-light mx-1">·</span>}
+                {i < 2 && <span className="text-muted-foreground font-light mx-1.5 sm:mx-2">·</span>}
               </motion.span>
             ))}
           </div>
