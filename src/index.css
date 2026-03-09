@@ -188,4 +188,10 @@
     background-size: 200% 200%;
     animation: gradient-shift 8s ease infinite;
   }
+
+  @keyframes shimmer-text {
+    0% { background-position: 200% 50%; }
+    50% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
 }
