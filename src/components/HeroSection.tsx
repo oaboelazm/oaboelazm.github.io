@@ -65,10 +65,28 @@ const HeroSection = () => {
                   {char}
                 </motion.span>
               ))}
+            </span>
+            <span className="block overflow-hidden pb-2 sm:pb-4">
+              {"AboElAzm".split("").map((char, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 80, rotateX: 40 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  transition={{
+                    delay: 0.9 + i * 0.07,
+                    duration: 1,
+                    type: "spring",
+                    bounce: 0.35,
+                  }}
+                  className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-foreground via-foreground/90 to-foreground/40"
+                >
+                  {char}
+                </motion.span>
+              ))}
               <motion.span
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2, type: "spring", bounce: 0.5 }}
+                transition={{ delay: 1.8, type: "spring", bounce: 0.5 }}
                 className="inline-block text-primary ml-1"
               >.</motion.span>
             </span>
