@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
@@ -25,63 +25,68 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-strong" : ""
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        scrolled ? "glass-strong shadow-[0_1px_30px_hsl(var(--background)/0.5)]" : ""
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        <Link to="/" className="font-heading text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-300">
+      <div className="container mx-auto flex items-center justify-between py-5 px-6">
+        <Link to="/" className="font-heading text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-500">
           Omar<span className="text-primary">.</span>
         </Link>
 
-        {/* Desktop */}
         {isHome && (
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((link) => (
-              <a
+          <div className="hidden md:flex items-center gap-10">
+            {links.map((link, i) => (
+              <motion.a
                 key={link.href}
                 href={link.href}
-                className="relative text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + i * 0.05, duration: 0.5 }}
+                className="relative text-[13px] text-muted-foreground hover:text-foreground transition-colors duration-500 font-medium tracking-wide group"
               >
                 {link.label}
-              </a>
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-500" />
+              </motion.a>
             ))}
           </div>
         )}
 
-        {/* Mobile toggle */}
         {isHome && (
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden flex flex-col gap-1.5 p-2"
             aria-label="Toggle menu"
           >
-            <span className={`block w-5 h-0.5 bg-foreground transition-transform duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-foreground transition-opacity duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-foreground transition-transform duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-foreground transition-all duration-500 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-foreground transition-all duration-500 ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-foreground transition-all duration-500 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
         )}
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && isHome && (
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden glass-strong border-t border-border/30 px-6 pb-6"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="md:hidden glass-strong border-t border-border/20 px-6 pb-6 overflow-hidden"
         >
-          {links.map((link) => (
-            <a
+          {links.map((link, i) => (
+            <motion.a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block py-3 text-muted-foreground hover:text-foreground transition-colors font-medium"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.05 }}
+              className="block py-3 text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium"
             >
               {link.label}
-            </a>
+            </motion.a>
           ))}
         </motion.div>
       )}

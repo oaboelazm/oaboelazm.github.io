@@ -1,17 +1,24 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Footer = () => (
-  <footer className="relative py-10 border-t border-border/20">
+  <footer className="relative py-14 border-t border-border/10">
     <div className="container mx-auto px-6">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <Link to="/" className="font-heading text-sm font-bold tracking-tight text-foreground/60 hover:text-foreground transition-colors">
-          Omar<span className="text-primary">.</span>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="flex flex-col sm:flex-row items-center justify-between gap-4"
+      >
+        <Link to="/" className="font-heading text-sm font-bold tracking-tight text-foreground/40 hover:text-foreground/70 transition-colors duration-500">
+          Omar<span className="text-primary/60">.</span>
         </Link>
 
-        <p className="text-muted-foreground/50 text-xs">
+        <p className="text-muted-foreground/30 text-xs font-mono tracking-wider">
           © {new Date().getFullYear()} Omar. All rights reserved.
         </p>
-      </div>
+      </motion.div>
     </div>
   </footer>
 );
