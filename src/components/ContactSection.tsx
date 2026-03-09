@@ -103,9 +103,16 @@ const ContactSection = () => {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3.5 sm:py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm sm:text-base hover:shadow-[0_0_40px_hsl(var(--primary)/0.25)] transition-all duration-500">
-                
-                Send Message
+                disabled={submitted}
+                className="w-full py-3.5 sm:py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm sm:text-base hover:shadow-[0_0_40px_hsl(var(--primary)/0.25)] transition-all duration-500 disabled:opacity-60 flex items-center justify-center gap-2">
+                {submitted ? (
+                  <>
+                    <CheckCircle className="w-4 h-4" />
+                    Sent!
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </motion.button>
             </form>
           </ScrollReveal>

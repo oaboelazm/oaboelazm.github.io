@@ -33,9 +33,8 @@ const SkillBar = ({ name, level, index }: { name: string; level: number; index: 
       </motion.div>
       <div className="h-[2px] sm:h-[3px] rounded-full bg-secondary/40 overflow-hidden">
         <motion.div
-          style={{ width }}
           className="h-full rounded-full"
-          {...{ style: { width, background: `linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))` } }}
+          style={{ width, background: `linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))` }}
         />
       </div>
     </div>
