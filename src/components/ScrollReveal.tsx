@@ -44,7 +44,7 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.98", "start 0.55"],
+    offset: ["start 1", "start 0.7"],
   });
 
   const words = text.split(" ");

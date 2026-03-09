@@ -58,7 +58,7 @@ const Navbar = () => {
         {isHome && (
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden relative z-20 flex flex-col gap-1.5 p-2.5 rounded-lg glass-strong border border-border/40 text-foreground"
+            className="md:hidden flex-shrink-0 flex flex-col gap-1.5 p-3 rounded-lg bg-secondary/80 border border-border/50 text-foreground"
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >
