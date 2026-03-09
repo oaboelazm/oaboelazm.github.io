@@ -32,33 +32,33 @@ const ContactSection = () => {
                 Feel free to reach out through the form or connect with me on social media.
               </p>
 
-              
-
-
-
-
-              
+              <div className="space-y-3 text-muted-foreground text-sm">
+                <p>📍 El-Obour City, Cairo, Egypt</p>
+                <p>📧 o.aboelazm@outlook.com</p>
+                <p>📱 +20 1013841277</p>
+                <p>🗣️ Arabic (Native) · English (Fluent) · German (Intermediate)</p>
+              </div>
 
               <div className="flex gap-3 sm:gap-4">
                 {[
-                { icon: Github, href: "https://github.com/oaboelazm", label: "GitHub" },
-                { icon: Linkedin, href: "https://linkedin.com/in/oaboelazm", label: "LinkedIn" },
-                { icon: Mail, href: "mailto:o.aboelazm@outlook.com", label: "Email" },
-                { icon: FileText, href: "/Omar_CV.pdf", label: "CV" }].
-                map((social) =>
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target={social.label !== "Email" ? "_blank" : undefined}
-                  rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-12 h-12 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/20 transition-colors duration-500"
-                  title={social.label}>
-                  
+                  { icon: Github, href: "https://github.com/oaboelazm", label: "GitHub" },
+                  { icon: Linkedin, href: "https://linkedin.com/in/oaboelazm", label: "LinkedIn" },
+                  { icon: Mail, href: "mailto:o.aboelazm@outlook.com", label: "Email" },
+                  { icon: FileText, href: "/Omar_CV.pdf", label: "CV" },
+                ].map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target={social.label !== "Email" ? "_blank" : undefined}
+                    rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
+                    whileHover={{ y: -3, scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-12 h-12 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/20 transition-colors duration-500"
+                    title={social.label}
+                  >
                     <social.icon className="w-5 h-5" />
                   </motion.a>
-                )}
+                ))}
               </div>
             </div>
           </ScrollReveal>
@@ -66,20 +66,20 @@ const ContactSection = () => {
           <ScrollReveal delay={0.15}>
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               {[
-              { type: "text", placeholder: "Your Name", key: "name" as const },
-              { type: "email", placeholder: "Your Email", key: "email" as const }].
-              map((field) =>
-              <div key={field.key}>
+                { type: "text", placeholder: "Your Name", key: "name" as const },
+                { type: "email", placeholder: "Your Email", key: "email" as const },
+              ].map((field) => (
+                <div key={field.key}>
                   <input
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  value={formData[field.key]}
-                  onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
-                  className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl bg-secondary/40 border border-border/30 text-foreground text-sm sm:text-base placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-1 focus:ring-primary/10 transition-all duration-500 font-body"
-                  required />
-                
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    value={formData[field.key]}
+                    onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
+                    className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl bg-secondary/40 border border-border/30 text-foreground text-sm sm:text-base placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-1 focus:ring-primary/10 transition-all duration-500 font-body"
+                    required
+                  />
                 </div>
-              )}
+              ))}
               <div>
                 <textarea
                   placeholder="Your Message"
@@ -87,23 +87,23 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl bg-secondary/40 border border-border/30 text-foreground text-sm sm:text-base placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-1 focus:ring-primary/10 transition-all duration-500 resize-none font-body"
-                  required />
-                
+                  required
+                />
               </div>
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3.5 sm:py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm sm:text-base hover:shadow-[0_0_40px_hsl(var(--primary)/0.25)] transition-all duration-500">
-                
+                className="w-full py-3.5 sm:py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm sm:text-base hover:shadow-[0_0_40px_hsl(var(--primary)/0.25)] transition-all duration-500"
+              >
                 Send Message
               </motion.button>
             </form>
           </ScrollReveal>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 export default ContactSection;
