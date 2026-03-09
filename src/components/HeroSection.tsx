@@ -82,7 +82,7 @@ const HeroSection = () => {
           className="max-w-2xl mx-auto mb-10 sm:mb-16"
         >
           <p className="text-base sm:text-xl lg:text-3xl text-muted-foreground font-light leading-relaxed tracking-wide">
-            Engineering intelligence at the edge of
+            Building secure & smart solutions with
           </p>
           <div className="flex flex-wrap justify-center gap-x-2 sm:gap-x-3 gap-y-1 mt-2 sm:mt-3">
             {[
