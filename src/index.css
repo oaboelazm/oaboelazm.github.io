@@ -15,7 +15,7 @@
     --popover: 225 16% 7%;
     --popover-foreground: 220 15% 88%;
 
-    --primary: 190 70% 50%;
+    --primary: 185 72% 48%;
     --primary-foreground: 225 20% 4%;
 
     --secondary: 225 14% 10%;
@@ -24,7 +24,7 @@
     --muted: 225 12% 8%;
     --muted-foreground: 220 10% 42%;
 
-    --accent: 190 70% 50%;
+    --accent: 160 55% 42%;
     --accent-foreground: 220 15% 88%;
 
     --destructive: 0 60% 50%;
@@ -32,22 +32,22 @@
 
     --border: 225 12% 12%;
     --input: 225 12% 12%;
-    --ring: 190 70% 50%;
+    --ring: 185 72% 48%;
 
     --radius: 0.75rem;
 
-    --nebula-1: 210 50% 50%;
-    --nebula-2: 195 60% 45%;
-    --nebula-3: 220 40% 40%;
+    --nebula-1: 185 60% 45%;
+    --nebula-2: 170 55% 40%;
+    --nebula-3: 160 45% 35%;
 
     --sidebar-background: 225 16% 6%;
     --sidebar-foreground: 220 12% 72%;
-    --sidebar-primary: 190 70% 50%;
+    --sidebar-primary: 185 72% 48%;
     --sidebar-primary-foreground: 225 20% 4%;
     --sidebar-accent: 225 14% 11%;
     --sidebar-accent-foreground: 220 12% 72%;
     --sidebar-border: 225 12% 14%;
-    --sidebar-ring: 190 70% 50%;
+    --sidebar-ring: 185 72% 48%;
   }
 }
 
@@ -126,7 +126,7 @@
 
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    background-image: linear-gradient(135deg, hsl(185 72% 48%), hsl(160 55% 42%));
   }
 
   .cosmic-card {
