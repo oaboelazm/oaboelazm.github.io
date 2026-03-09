@@ -12,7 +12,7 @@ const Footer = () => (
         className="flex flex-col sm:flex-row items-center justify-between gap-4"
       >
         <Link to="/" className="font-heading text-sm font-bold tracking-tight text-foreground/40 hover:text-foreground/70 transition-colors duration-500">
-          Omar<span className="text-primary/60">.</span>
+          oaboelazm<span className="text-primary/60">.</span>
         </Link>
 
         <p className="text-muted-foreground text-xs font-mono tracking-wider">
