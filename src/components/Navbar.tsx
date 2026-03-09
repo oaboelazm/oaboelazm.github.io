@@ -28,12 +28,12 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 overflow-x-hidden ${
         scrolled ? "glass-strong shadow-[0_1px_30px_hsl(var(--background)/0.5)]" : ""
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between py-5 px-6">
-        <Link to="/" className="font-heading text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-500">
+      <div className="w-full flex items-center justify-between py-4 px-4 sm:px-6">
+        <Link to="/" className="font-heading text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-500 flex-shrink-0">
           Omar<span className="text-primary">.</span>
         </Link>
 
@@ -58,7 +58,7 @@ const Navbar = () => {
         {isHome && (
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden relative z-20 flex flex-col gap-1.5 p-2.5 rounded-lg glass-strong border border-border/40 text-foreground"
+            className="md:hidden flex-shrink-0 flex flex-col gap-1.5 p-3 rounded-lg bg-secondary/80 border border-border/50 text-foreground"
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >

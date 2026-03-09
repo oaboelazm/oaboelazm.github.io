@@ -18,8 +18,8 @@ const directionMap = {
 
 const revealViewport = {
   once: false,
-  amount: 0.18,
-  margin: "0px 0px -10% 0px",
+  amount: 0.05,
+  margin: "0px 0px 0px 0px",
 };
 
 const ScrollReveal = ({ children, className = "", delay = 0, direction = "up", distance }: ScrollRevealProps) => {
@@ -44,7 +44,7 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.98", "start 0.55"],
+    offset: ["start 1", "start 0.7"],
   });
 
   const words = text.split(" ");
