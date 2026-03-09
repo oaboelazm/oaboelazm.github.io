@@ -15,7 +15,7 @@ const Footer = () => (
           Omar<span className="text-primary/60">.</span>
         </Link>
 
-        <p className="text-muted-foreground/30 text-xs font-mono tracking-wider">
+        <p className="text-muted-foreground text-xs font-mono tracking-wider">
           © {new Date().getFullYear()} Omar. All rights reserved.
         </p>
       </motion.div>
