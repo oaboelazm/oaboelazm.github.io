@@ -16,11 +16,11 @@ const HeroSection = () => {
   const smoothY = useSpring(heroY, { stiffness: 100, damping: 30 });
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden max-w-full">
       {/* Ambient gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-[400px] sm:w-[800px] h-[400px] sm:h-[800px] top-[-20%] left-[-15%] rounded-full bg-[hsl(var(--primary)/0.03)] blur-[150px] animate-float" />
-        <div className="absolute w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bottom-[-10%] right-[-10%] rounded-full bg-[hsl(var(--accent)/0.03)] blur-[150px] animate-float" style={{ animationDelay: "5s" }} />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute w-[300px] sm:w-[800px] h-[300px] sm:h-[800px] top-[-10%] left-[-5%] rounded-full bg-[hsl(var(--primary)/0.03)] blur-[150px] animate-float" />
+        <div className="absolute w-[250px] sm:w-[600px] h-[250px] sm:h-[600px] bottom-[-5%] right-[-5%] rounded-full bg-[hsl(var(--accent)/0.03)] blur-[150px] animate-float" style={{ animationDelay: "5s" }} />
       </div>
 
       {/* Horizon line */}
