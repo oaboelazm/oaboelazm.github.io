@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, MotionValue, useInView } from "framer-motion";
 import { ReactNode, useRef } from "react";
 
 interface ScrollRevealProps {
@@ -10,34 +10,22 @@ interface ScrollRevealProps {
 }
 
 const directionMap = {
-  up: { y: 80, x: 0 },
-  down: { y: -80, x: 0 },
-  left: { x: 80, y: 0 },
-  right: { x: -80, y: 0 },
+  up: { y: 60, x: 0 },
+  down: { y: -60, x: 0 },
+  left: { x: 60, y: 0 },
+  right: { x: -60, y: 0 },
 };
 
 const ScrollReveal = ({ children, className = "", delay = 0, direction = "up", distance }: ScrollRevealProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.95", "start 0.55"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
-  const baseOffset = directionMap[direction];
-  const dist = distance ?? Math.abs(baseOffset.y || baseOffset.x);
-
-  const opacity = useTransform(smoothProgress, [0, 1], [0, 1]);
-  const y = useTransform(smoothProgress, [0, 1], [baseOffset.y ? dist * Math.sign(baseOffset.y) : 0, 0]);
-  const x = useTransform(smoothProgress, [0, 1], [baseOffset.x ? dist * Math.sign(baseOffset.x) : 0, 0]);
-  const blur = useTransform(smoothProgress, [0, 0.5], [6, 0]);
-  const filterBlur = useTransform(blur, (v) => `blur(${v}px)`);
+  const offset = directionMap[direction];
+  const dist = distance ?? Math.abs(offset.y || offset.x);
 
   return (
     <motion.div
-      ref={ref}
-      style={{ opacity, x, y, filter: filterBlur }}
+      initial={{ opacity: 0, y: offset.y ? dist * Math.sign(offset.y) : 0, x: offset.x ? dist * Math.sign(offset.x) : 0, filter: "blur(6px)" }}
+      whileInView={{ opacity: 1, y: 0, x: 0, filter: "blur(0px)" }}
+      viewport={{ once: false, margin: "-80px" }}
+      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -50,7 +38,7 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.9", "start 0.25"],
+    offset: ["start 0.95", "start 0.25"],
   });
 
   const words = text.split(" ");
@@ -67,13 +55,13 @@ export const TextReveal = ({ text, className = "" }: { text: string; className?:
 };
 
 const Word = ({ children, progress, range }: { children: ReactNode; progress: MotionValue<number>; range: [number, number] }) => {
-  const opacity = useTransform(progress, range, [0.08, 1]);
-  const y = useTransform(progress, range, [8, 0]);
+  const opacity = useTransform(progress, range, [0.1, 1]);
+  const y = useTransform(progress, range, [6, 0]);
   const smoothOpacity = useSpring(opacity, { stiffness: 100, damping: 20 });
   const smoothY = useSpring(y, { stiffness: 100, damping: 20 });
 
   return (
-    <motion.span style={{ opacity: smoothOpacity, y: smoothY }} className="inline-block mr-[0.25em] transition-colors duration-200">
+    <motion.span style={{ opacity: smoothOpacity, y: smoothY }} className="inline-block mr-[0.25em]">
       {children}
     </motion.span>
   );
@@ -81,19 +69,8 @@ const Word = ({ children, progress, range }: { children: ReactNode; progress: Mo
 
 // Stagger container — children animate in one by one
 export const StaggerContainer = ({ children, className = "", staggerDelay = 0.08 }: { children: ReactNode; className?: string; staggerDelay?: number }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.9", "start 0.4"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 80, damping: 25 });
-  const opacity = useTransform(smoothProgress, [0, 0.3], [0, 1]);
-
   return (
     <motion.div
-      ref={ref}
-      style={{ opacity }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, margin: "-60px" }}
@@ -122,24 +99,14 @@ export const StaggerItem = ({ children, className = "" }: { children: ReactNode;
   );
 };
 
-// Scale-in on scroll — like Apple product reveals (bidirectional)
+// Scale-in on scroll — like Apple product reveals
 export const ScaleReveal = ({ children, className = "" }: { children: ReactNode; className?: string }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.95", "start 0.45"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 80, damping: 25 });
-  const opacity = useTransform(smoothProgress, [0, 1], [0, 1]);
-  const scale = useTransform(smoothProgress, [0, 1], [0.9, 1]);
-  const blur = useTransform(smoothProgress, [0, 0.6], [8, 0]);
-  const filterBlur = useTransform(blur, (v) => `blur(${v}px)`);
-
   return (
     <motion.div
-      ref={ref}
-      style={{ opacity, scale, filter: filterBlur }}
+      initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
+      whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+      viewport={{ once: false, margin: "-60px" }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -155,7 +122,7 @@ export const Parallax = ({ children, className = "", speed = 0.3 }: { children: 
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [-50 * speed, 50 * speed]);
+  const y = useTransform(scrollYProgress, [0, 1], [-40 * speed, 40 * speed]);
   const smoothY = useSpring(y, { stiffness: 100, damping: 30 });
 
   return (
@@ -167,19 +134,14 @@ export const Parallax = ({ children, className = "", speed = 0.3 }: { children: 
 
 // Large heading that fades in with scale — Apple keynote style
 export const HeroReveal = ({ children, className = "" }: { children: ReactNode; className?: string }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.8", "start 0.2"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20 });
-  const opacity = useTransform(smoothProgress, [0, 0.6], [0, 1]);
-  const scale = useTransform(smoothProgress, [0, 1], [0.85, 1]);
-  const y = useTransform(smoothProgress, [0, 1], [60, 0]);
-
   return (
-    <motion.div ref={ref} style={{ opacity, scale, y }} className={className}>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.88, y: 50, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: false, margin: "-40px" }}
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
       {children}
     </motion.div>
   );
