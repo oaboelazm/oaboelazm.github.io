@@ -1,11 +1,11 @@
 import ScrollReveal, { TextReveal, StaggerContainer, StaggerItem, HeroReveal, Parallax } from "./ScrollReveal";
-import { Rocket, Cpu, Code2, Radio } from "lucide-react";
+import { Cpu, Code2, Shield, Radio } from "lucide-react";
 
 const interests = [
-  { icon: Rocket, label: "Artificial Intelligence", desc: "Deep learning & neural nets" },
-  { icon: Cpu, label: "Embedded Systems", desc: "ARM, RTOS & firmware" },
-  { icon: Code2, label: "Software Development", desc: "Full-stack & architecture" },
-  { icon: Radio, label: "IoT & Connected Devices", desc: "MQTT, edge & cloud" },
+  { icon: Cpu, label: "Embedded Systems", desc: "VHDL, FPGA & hardware design" },
+  { icon: Code2, label: "Software Development", desc: "Python, C, Java & full-stack" },
+  { icon: Shield, label: "Cybersecurity", desc: "Pentesting & infrastructure security" },
+  { icon: Radio, label: "IoT & Connected Devices", desc: "ESP32, BLE & smart systems" },
 ];
 
 const AboutSection = () => {
@@ -24,9 +24,9 @@ const AboutSection = () => {
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-20 items-start">
           <Parallax speed={0.15}>
             <div className="space-y-6 sm:space-y-8 text-base sm:text-lg lg:text-xl text-muted-foreground">
-              <TextReveal text="I'm a passionate developer and engineer specializing in the intersection of artificial intelligence, embedded systems, and modern software development." />
-              <TextReveal text="With a deep curiosity for how intelligent systems interact with the physical world, I build solutions that bridge cutting-edge AI with real-world hardware — from computer vision pipelines to IoT-connected embedded devices." />
-              <TextReveal text="I believe in clean code, elegant architecture, and technology that makes a meaningful impact." />
+              <TextReveal text="Computer Engineering undergraduate (Senior Year) with a strong interest in embedded systems, hardware/software co-design, and cybersecurity." />
+              <TextReveal text="Hands-on experience in VHDL-based hardware design, Python/C programming, and real-world engineering projects. Actively developing skills in infrastructure security, vulnerability assessment, and penetration testing." />
+              <TextReveal text="Driven by curiosity and a strong learning mindset, I continuously explore, research, and experiment with emerging technologies to become an efficient and security-aware hardware engineer." />
             </div>
           </Parallax>
 

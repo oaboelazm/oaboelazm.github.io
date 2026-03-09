@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ScrollReveal, { HeroReveal } from "./ScrollReveal";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 
 const ContactSection = () => {
@@ -32,11 +32,19 @@ const ContactSection = () => {
                 Feel free to reach out through the form or connect with me on social media.
               </p>
 
+              <div className="space-y-3 text-muted-foreground text-sm">
+                <p>📍 El-Obour City, Cairo, Egypt</p>
+                <p>📧 o.aboelazm@outlook.com</p>
+                <p>📱 +20 1013841277</p>
+                <p>🗣️ Arabic (Native) · English (Fluent) · German (Intermediate)</p>
+              </div>
+
               <div className="flex gap-3 sm:gap-4">
                 {[
-                  { icon: Github, href: "https://github.com", label: "GitHub" },
-                  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                  { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+                  { icon: Github, href: "https://github.com/oaboelazm", label: "GitHub" },
+                  { icon: Linkedin, href: "https://linkedin.com/in/oaboelazm", label: "LinkedIn" },
+                  { icon: Mail, href: "mailto:o.aboelazm@outlook.com", label: "Email" },
+                  { icon: FileText, href: "/Omar_CV.pdf", label: "CV" },
                 ].map((social) => (
                   <motion.a
                     key={social.label}
@@ -46,6 +54,7 @@ const ContactSection = () => {
                     whileHover={{ y: -3, scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                     className="w-12 h-12 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/20 transition-colors duration-500"
+                    title={social.label}
                   >
                     <social.icon className="w-5 h-5" />
                   </motion.a>

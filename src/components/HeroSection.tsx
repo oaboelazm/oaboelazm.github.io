@@ -17,20 +17,17 @@ const HeroSection = () => {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden max-w-full">
-      {/* Ambient gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute w-[300px] sm:w-[800px] h-[300px] sm:h-[800px] top-[-10%] left-[-5%] rounded-full bg-[hsl(var(--primary)/0.03)] blur-[150px] animate-float" />
         <div className="absolute w-[250px] sm:w-[600px] h-[250px] sm:h-[600px] bottom-[-5%] right-[-5%] rounded-full bg-[hsl(var(--accent)/0.03)] blur-[150px] animate-float" style={{ animationDelay: "5s" }} />
       </div>
 
-      {/* Horizon line */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/8 to-transparent" />
 
       <motion.div
         style={{ opacity: smoothOpacity, scale: smoothScale, y: smoothY }}
         className="container mx-auto px-5 sm:px-6 relative z-10 text-center"
       >
-        {/* Status badge */}
         <div className="flex justify-center w-full mb-6 sm:mb-10">
           <motion.div
             initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
@@ -43,7 +40,6 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* Name */}
         <div className="relative inline-block mb-4 sm:mb-8">
           <motion.div
             initial={{ opacity: 0 }}
@@ -79,7 +75,6 @@ const HeroSection = () => {
           </h1>
         </div>
 
-        {/* Subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -91,9 +86,9 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-x-2 sm:gap-x-3 gap-y-1 mt-2 sm:mt-3">
             {[
-              { text: "AI", color: "primary" },
-              { text: "Embedded Systems", color: "secondary" },
-              { text: "Software", color: "accent" },
+              { text: "Embedded Systems", color: "primary" },
+              { text: "Cybersecurity", color: "accent" },
+              { text: "Software", color: "primary" },
             ].map((item, i) => (
               <motion.span
                 key={item.text}
@@ -115,7 +110,6 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -143,7 +137,6 @@ const HeroSection = () => {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

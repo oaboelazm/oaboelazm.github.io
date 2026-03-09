@@ -3,14 +3,16 @@ import ScrollReveal, { HeroReveal, ScaleReveal } from "./ScrollReveal";
 import { useRef } from "react";
 
 const skills = [
-  { name: "Python", level: 90 },
   { name: "C / C++", level: 85 },
-  { name: "JavaScript / TypeScript", level: 80 },
-  { name: "AI / Machine Learning", level: 88 },
-  { name: "Computer Vision", level: 82 },
-  { name: "Embedded Systems", level: 85 },
-  { name: "IoT", level: 78 },
-  { name: "React & Web Dev", level: 75 },
+  { name: "Python", level: 85 },
+  { name: "Java / C#", level: 75 },
+  { name: "VHDL / Hardware Design", level: 82 },
+  { name: "Embedded Systems & IoT", level: 85 },
+  { name: "AI / ML / Computer Vision", level: 80 },
+  { name: "Flutter / Dart", level: 70 },
+  { name: "Web Dev (PHP, WordPress, HTML/CSS)", level: 75 },
+  { name: "Linux & System Administration", level: 78 },
+  { name: "Cybersecurity & Pentesting", level: 70 },
 ];
 
 const SkillBar = ({ name, level, index }: { name: string; level: number; index: number }) => {
