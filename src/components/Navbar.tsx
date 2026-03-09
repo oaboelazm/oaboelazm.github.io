@@ -34,7 +34,7 @@ const Navbar = () => {
     >
       <div className="w-full flex items-center justify-between py-4 px-4 sm:px-6">
         <Link to="/" className="font-heading text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors duration-500 flex-shrink-0">
-          Omar<span className="text-primary">.</span>
+          oaboelazm<span className="text-primary">.</span>
         </Link>
 
         {isHome && (
