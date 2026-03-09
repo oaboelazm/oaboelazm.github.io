@@ -11,7 +11,7 @@ import ParticleBackground from "@/components/ParticleBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-background relative overflow-x-hidden max-w-full">
       <ParticleBackground />
       <Navbar />
       <HeroSection />
