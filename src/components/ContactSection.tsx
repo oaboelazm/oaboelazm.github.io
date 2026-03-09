@@ -1,14 +1,23 @@
 import { useState } from "react";
 import ScrollReveal, { HeroReveal } from "./ScrollReveal";
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
-import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, FileText, CheckCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setSubmitted(true);
+    toast({
+      title: "Message sent! ✨",
+      description: "Thanks for reaching out. I'll get back to you soon.",
+    });
+    setFormData({ name: "", email: "", message: "" });
+    setTimeout(() => setSubmitted(false), 3000);
   };
 
   return (
