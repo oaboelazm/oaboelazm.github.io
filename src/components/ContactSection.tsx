@@ -1,6 +1,7 @@
 import { useState } from "react";
-import ScrollReveal from "./ScrollReveal";
+import ScrollReveal, { HeroReveal } from "./ScrollReveal";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -11,91 +12,83 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-32 relative">
+    <section id="contact" className="py-40 lg:py-52 relative">
       <div className="section-divider absolute top-0 left-0 right-0" />
-      <div className="nebula-orb w-[500px] h-[400px] bottom-[10%] left-[30%] bg-[hsl(var(--nebula-2)/0.04)]" />
+      <div className="absolute w-[600px] h-[500px] bottom-[10%] left-[25%] rounded-full bg-[hsl(var(--nebula-2)/0.03)] blur-[150px]" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <ScrollReveal>
-          <p className="text-primary font-mono font-medium tracking-widest uppercase text-xs mb-3 text-center">// Contact</p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-extrabold mb-16 text-center">
+      <div className="container mx-auto px-6 relative z-10 max-w-6xl">
+        <HeroReveal className="text-center mb-20">
+          <p className="text-primary font-mono font-medium tracking-[0.25em] uppercase text-[11px] mb-4">Contact</p>
+          <h2 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tight">
             Get In <span className="text-gradient">Touch</span>
           </h2>
-        </ScrollReveal>
+        </HeroReveal>
 
-        <div className="grid lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-20 max-w-5xl mx-auto">
           <ScrollReveal delay={0.1}>
-            <div className="space-y-8">
-              <p className="text-muted-foreground text-lg leading-relaxed">
+            <div className="space-y-10">
+              <p className="text-muted-foreground text-lg lg:text-xl leading-relaxed">
                 Have a project in mind or want to collaborate? I'd love to hear from you.
                 Feel free to reach out through the form or connect with me on social media.
               </p>
 
               <div className="flex gap-4">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href="mailto:hello@example.com"
-                  className="w-12 h-12 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
+                {[
+                  { icon: Github, href: "https://github.com", label: "GitHub" },
+                  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+                  { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+                ].map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target={social.label !== "Email" ? "_blank" : undefined}
+                    rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
+                    whileHover={{ y: -3, scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-13 h-13 rounded-xl cosmic-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/20 transition-colors duration-500"
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </motion.a>
+                ))}
               </div>
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
+          <ScrollReveal delay={0.15}>
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-5 py-3.5 rounded-xl bg-secondary/60 border border-border/50 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/15 transition-all duration-300 font-body"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-5 py-3.5 rounded-xl bg-secondary/60 border border-border/50 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/15 transition-all duration-300 font-body"
-                  required
-                />
-              </div>
+              {[
+                { type: "text", placeholder: "Your Name", key: "name" as const },
+                { type: "email", placeholder: "Your Email", key: "email" as const },
+              ].map((field) => (
+                <div key={field.key}>
+                  <input
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    value={formData[field.key]}
+                    onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
+                    className="w-full px-5 py-4 rounded-xl bg-secondary/40 border border-border/30 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-1 focus:ring-primary/10 transition-all duration-500 font-body"
+                    required
+                  />
+                </div>
+              ))}
               <div>
                 <textarea
                   placeholder="Your Message"
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-5 py-3.5 rounded-xl bg-secondary/60 border border-border/50 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/40 focus:ring-1 focus:ring-primary/15 transition-all duration-300 resize-none font-body"
+                  className="w-full px-5 py-4 rounded-xl bg-secondary/40 border border-border/30 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:ring-1 focus:ring-primary/10 transition-all duration-500 resize-none font-body"
                   required
                 />
               </div>
-              <button
+              <motion.button
                 type="submit"
-                className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-all duration-300 glow-primary"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-semibold hover:shadow-[0_0_40px_hsl(var(--primary)/0.25)] transition-all duration-500"
               >
                 Send Message
-              </button>
+              </motion.button>
             </form>
           </ScrollReveal>
         </div>

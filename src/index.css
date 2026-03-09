@@ -9,20 +9,20 @@
     --background: 225 20% 4%;
     --foreground: 220 15% 88%;
 
-    --card: 225 16% 8%;
+    --card: 225 16% 7%;
     --card-foreground: 220 15% 88%;
 
-    --popover: 225 16% 8%;
+    --popover: 225 16% 7%;
     --popover-foreground: 220 15% 88%;
 
     --primary: 215 60% 58%;
     --primary-foreground: 225 20% 4%;
 
-    --secondary: 225 14% 11%;
+    --secondary: 225 14% 10%;
     --secondary-foreground: 220 12% 72%;
 
-    --muted: 225 12% 9%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 225 12% 8%;
+    --muted-foreground: 220 10% 42%;
 
     --accent: 255 35% 55%;
     --accent-foreground: 220 15% 88%;
@@ -30,8 +30,8 @@
     --destructive: 0 60% 50%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 225 12% 14%;
-    --input: 225 12% 14%;
+    --border: 225 12% 12%;
+    --input: 225 12% 12%;
     --ring: 215 60% 58%;
 
     --radius: 0.75rem;
@@ -58,6 +58,8 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
@@ -66,6 +68,21 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
+  }
+
+  /* Custom scrollbar — minimal */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.3);
   }
 }
 
@@ -90,11 +107,11 @@
   }
 
   .glass {
-    @apply bg-card/40 backdrop-blur-xl border border-border/30;
+    @apply bg-card/30 backdrop-blur-2xl border border-border/20;
   }
 
   .glass-strong {
-    @apply bg-card/60 backdrop-blur-2xl border border-border/40;
+    @apply bg-card/50 backdrop-blur-3xl border border-border/25;
   }
 
   .text-gradient {
@@ -106,6 +123,7 @@
     @apply glass rounded-2xl;
     position: relative;
     overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .cosmic-card::before {
@@ -115,15 +133,16 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(var(--border) / 0.6), transparent);
+    background: linear-gradient(90deg, transparent, hsl(var(--border) / 0.4), transparent);
+    transition: all 0.5s ease;
   }
 
   .cosmic-card:hover {
-    border-color: hsl(var(--primary) / 0.2);
+    border-color: hsl(var(--primary) / 0.15);
   }
 
   .cosmic-card:hover::before {
-    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.25), transparent);
   }
 
   .nebula-orb {
@@ -135,18 +154,18 @@
 
   .section-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(var(--border) / 0.4), transparent);
+    background: linear-gradient(90deg, transparent, hsl(var(--border) / 0.25), transparent);
   }
 }
 
 @layer utilities {
   .animate-float {
-    animation: float 10s ease-in-out infinite;
+    animation: float 12s ease-in-out infinite;
   }
 
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-25px); }
   }
 
   @keyframes gradient-shift {
