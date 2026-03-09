@@ -2,28 +2,46 @@ import ScrollReveal, { StaggerContainer, StaggerItem, HeroReveal } from "./Scrol
 
 const timeline = [
   {
+    year: "2021 – 2026",
+    title: "B.Eng. Computer Engineering",
+    org: "El Shorouk Academy, Cairo",
+    description: "Senior year undergraduate studying computer engineering with focus on embedded systems, hardware/software co-design, and cybersecurity.",
+  },
+  {
+    year: "2023 – Present",
+    title: "System Administrator (Part-Time, Remote)",
+    org: "EC4SDF – Cairo, Egypt",
+    description: "Managing and maintaining organizational servers and websites, handling Linux hosting environments, WordPress infrastructure and basic security hardening.",
+  },
+  {
+    year: "2022 – Present",
+    title: "Freelance Software Developer (Remote)",
+    org: "Freelance",
+    description: "Utilizing Python and Java for software development, providing optimal solutions, and collaborating with remote teams.",
+  },
+  {
+    year: "2025",
+    title: "ML, CV, NLP (Upscaling Program)",
+    org: "NTI",
+    description: "Advanced training in Machine Learning, Computer Vision, and Natural Language Processing.",
+  },
+  {
+    year: "2025",
+    title: "HCIA-Datacom Certification",
+    org: "Huawei Talent Academy",
+    description: "Certified in Huawei's datacom technologies and networking fundamentals.",
+  },
+  {
     year: "2024",
-    title: "AI Research Engineer",
-    org: "Tech Company",
-    description: "Leading development of computer vision models for real-time applications and edge deployment.",
+    title: "HCIA-AI Certification",
+    org: "Huawei Talent Academy",
+    description: "Certified in Huawei's AI fundamentals including machine learning and deep learning concepts.",
   },
   {
-    year: "2023",
-    title: "Embedded Systems Developer",
-    org: "Innovation Lab",
-    description: "Designed and programmed firmware for IoT devices with wireless connectivity and sensor integration.",
-  },
-  {
-    year: "2023",
-    title: "Machine Learning Certification",
-    org: "Stanford Online",
-    description: "Completed advanced ML specialization covering deep learning, NLP, and computer vision.",
-  },
-  {
-    year: "2022",
-    title: "Software Engineering Intern",
-    org: "Startup",
-    description: "Built full-stack web applications and contributed to CI/CD pipeline optimization.",
+    year: "In Progress",
+    title: "Vulnerability Analyst & Penetration Tester",
+    org: "DEPI – Expected July 2026",
+    description: "Comprehensive cybersecurity training covering vulnerability assessment and penetration testing methodologies.",
   },
 ];
 

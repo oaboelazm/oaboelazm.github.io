@@ -4,31 +4,28 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "AI Vision Pipeline",
-    description: "Real-time computer vision system for object detection and tracking using deep learning models optimized for edge deployment.",
-    tech: ["Python", "OpenCV", "TensorFlow", "CUDA"],
-    github: "#",
-    demo: "#",
-  },
-  {
-    title: "IoT Smart Dashboard",
-    description: "Full-stack IoT monitoring dashboard with real-time sensor data visualization and alerting for embedded devices.",
-    tech: ["React", "Node.js", "MQTT", "InfluxDB"],
-    github: "#",
-    demo: "#",
-  },
-  {
-    title: "Embedded ML Accelerator",
-    description: "Custom firmware for deploying ML models on ARM microcontrollers with optimized inference and low power consumption.",
-    tech: ["C", "ARM", "TFLite", "FreeRTOS"],
+    title: "Automatic Indoor Lighting Control System",
+    description: "Designed and implemented a VHDL-based light control system on FPGA that maintains constant room brightness and automatically controls curtains using sensor input for energy efficiency.",
+    tech: ["VHDL", "FPGA", "HDL Designer", "Sensor Integration"],
     github: "#",
   },
   {
-    title: "Neural Style Transfer App",
-    description: "Web application that applies artistic neural style transfer to images using PyTorch models served via REST API.",
-    tech: ["Python", "PyTorch", "FastAPI", "React"],
+    title: "Face & Object Detection System",
+    description: "Lightweight real-time vision system for face and object detection, tailored for low-power, resource-constrained hardware using the Luckfox Pico Mini SBC.",
+    tech: ["Python", "OpenCV", "Luckfox Pico", "Embedded Linux"],
     github: "#",
-    demo: "#",
+  },
+  {
+    title: "Wearable Bracelet Communication System",
+    description: "ESP32-based touch-sensitive bracelet that communicates with a mobile app via BLE, providing haptic and visual feedback with real-time alerts between connected individuals.",
+    tech: ["ESP32", "BLE", "Mobile App", "Haptic Feedback"],
+    github: "#",
+  },
+  {
+    title: "AI Wearable Assistant for Visually Impaired",
+    description: "Conceptualizing a wearable assistant with AI for real-time obstacle detection, forehead haptic feedback, hybrid embedded/mobile processing, and offline LLM support.",
+    tech: ["AI", "Embedded Systems", "Haptics", "LLM"],
+    github: "#",
   },
 ];
 
@@ -77,11 +74,6 @@ const ProjectsSection = () => {
                   <a href={project.github} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
                     <Github className="w-4 h-4" /> Code
                   </a>
-                  {project.demo && (
-                    <a href={project.demo} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
-                      <ExternalLink className="w-4 h-4" /> Demo
-                    </a>
-                  )}
                 </div>
               </motion.div>
             </StaggerItem>
